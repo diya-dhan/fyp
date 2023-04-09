@@ -375,6 +375,7 @@ def validate(v_front, gen, post, fast_validate=False, epoch=0, writer=None):
         description = 'Check validation step' if fast_validate else 'Validation'
         print(description)
         for i, batch in enumerate(dataloader):
+            print("Index : " + str(i))
             if i % 10 == 0:
                 if not fast_validate:
                     print("******** Validation : %d / %d ********" % ((i + 1) * batch_size, samples))

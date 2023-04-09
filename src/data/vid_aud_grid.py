@@ -41,13 +41,13 @@ class MultiDataset(Dataset):
         file_list = []
         if subject == 'overlap':
             if mode == 'train':
-                with open('./data/overlap_train.txt', 'r') as f:
+                with open('./data/overlap_train_new.txt', 'r') as f:
                     lines = f.readlines()
                 for l in lines:
                     file = l.strip().replace('mpg_6000/', '') + '.mp4'
                     file_list.append(os.path.join(grid, file))
             else:
-                with open('./data/overlap_val.txt', 'r') as f:
+                with open('./data/overlap_val_new.txt', 'r') as f:
                     lines = f.readlines()
                 for l in lines:
                     file = l.strip().replace('mpg_6000/', '') + '.mp4'
@@ -56,7 +56,11 @@ class MultiDataset(Dataset):
             with open('./data/unseen_splits.txt', 'r') as f:
                 lines = f.readlines()
             for l in lines:
+                #print(l.strip())
+                
                 if mode in l.strip():
+                 #   if mode=='val':
+                 #       print("yes")
                     _, sub, fname = l.strip().split('/')
                     file = f'{sub}/video/{fname}.mp4'
                     if os.path.exists(os.path.join(grid, file)):
@@ -89,6 +93,9 @@ class MultiDataset(Dataset):
                         file_list.append(os.path.join(grid, file))
                     elif file.split('/')[0] == subject:
                         file_list.append(os.path.join(grid, file))
+        
+        #print("FILE LIST")
+        #print(file_list)
         return file_list
 
     def build_tensor(self, frames):

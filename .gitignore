@@ -1,0 +1,8 @@
+checkpoint/
+dataset/
+test/spec_mel/s1/
+test/wav/s1/
+runs/
+diyadhan01_new
+diyadhan01_new.pb
+
